@@ -1,0 +1,157 @@
+## AI Agent Assignment – Submission Document
+
+### 🧾 SECTION 1: BASIC DETAILS
+
+**Name:** YUVASRI M
+**AI Agent Title / Use Case:** AI Agent to help students revise biology topics with quizzes and summaries
+
+---
+
+### 🧠 SECTION 2: PROBLEM FRAMING
+
+**1.1 What problem does your AI Agent solve?**
+Students often struggle to revise large amounts of syllabus content effectively, especially close to exams. This agent helps by generating customized quizzes, summaries, and study prompts instantly.
+
+**1.2 Why is this agent useful?**
+It saves time, removes decision fatigue, and allows focused, topic-wise revision. It provides quick, interactive, and tailored content based on the student’s needs.
+
+**1.3 Who is the target user?**
+College and high school students revising science subjects (e.g., Biology, Physics, Chemistry) for exams or self-study.
+
+**1.4 What not to include?**
+The agent does not generate long essay answers or subjective opinion-based content. It avoids tutoring-style back-and-forth and sticks to short, factual, or quiz-based outputs.
+
+---
+
+### 🧱 SECTION 3: 4-LAYER PROMPT DESIGN
+
+#### 🔹 3.1 INPUT UNDERSTANDING
+
+**Prompt:**
+
+```
+Analyze the user’s input and identify:
+- Subject (e.g., Biology, Physics)
+- Topic (e.g., Photosynthesis, Newton's Laws)
+- Request type (summary, quiz, explanation, flashcards)
+Return the values as structured keywords.
+```
+
+**What is this prompt responsible for?**
+Breaking down vague or broad inputs into actionable categories.
+
+---
+
+#### 🔹 3.2 STATE TRACKER
+
+**Prompt:**
+
+```
+Maintain the last known subject and topic if the user doesn’t specify it again. Use system memory (or variables) to store:
+- current_subject
+- current_topic
+
+Example: If the user previously asked for "photosynthesis quiz", and now says "explain this," assume the topic is still photosynthesis.
+```
+
+**How does this help the agent remember?**
+It allows follow-up interactions without repeating context.
+
+---
+
+#### 🔹 3.3 TASK PLANNER
+
+**Prompt:**
+
+```
+If the request type is:
+- “quiz” → generate 5–10 multiple-choice questions
+- “summary” → list 4–6 key points
+- “explanation” → give a brief paragraph explaining the concept
+- “flashcards” → create Q&A pairs
+
+Use branching logic to determine what task to perform and how to format it.
+```
+
+**What steps does your agent take internally?**
+Uses logic branching to create the correct type of response based on intent.
+
+---
+
+#### 🔹 3.4 OUTPUT GENERATOR
+
+**Prompt:**
+
+```
+Format the response using Markdown with clear headings and bullet points. Use friendly, student-focused tone and include emojis where helpful.
+
+Example:
+### Quiz on Photosynthesis  
+🧪 Question 1: ...
+```
+
+**What kind of output formatting or phrasing did you aim for?**
+Markdown formatting, engaging tone, emojis, and well-organized output.
+
+---
+
+### 🔍 SECTION 4: CHATGPT EXPLORATION LOG
+
+| Attempt | Prompt Layer        | What Happened                   | What You Changed                           | Why                            |
+| ------- | ------------------- | ------------------------------- | ------------------------------------------ | ------------------------------ |
+| 1       | Input Understanding | Couldn’t detect request type    | Added examples                             | To make prompt parsing better  |
+| 2       | Output Generator    | Output was plain text           | Added Markdown formatting and emojis       | Improve engagement and clarity |
+| 3       | Task Planner        | Repeated quiz questions         | Changed logic to randomize set             | Improve variation and quality  |
+| 4       | State Tracker       | Lost topic context in follow-up | Added system message with stored variables | Simulate memory between turns  |
+
+---
+
+### 🧪 SECTION 5: OUTPUT TESTS
+
+#### Test 1 – Normal Input
+
+**Input:** "Give me a quiz on photosynthesis"
+**Output:** A 10-question multiple-choice quiz was generated, covering the process, equation, stages, and key terms in photosynthesis.
+
+#### Test 2 – Vague Input
+
+**Input:** "Help me revise biology"
+**Output:** The agent listed 6 key biology topics (e.g., Cell Biology, Genetics, Ecology) and followed up with a quiz on Cell Biology. It handled vague input effectively.
+
+#### Test 3 – Invalid Input
+
+**Input:** ""
+**Output:** "Sorry, I didn’t catch that. Could you please enter a subject or topic you'd like to revise?"
+
+---
+
+### 🔄 SECTION 6: REFLECTION
+
+**6.1 What was the hardest part?**
+The hardest part was designing prompts that simulate memory and handle vague inputs gracefully. Making the agent remember previous topics without real database memory was a creative challenge.
+
+**6.2 What part did you enjoy the most?**
+I enjoyed seeing how a simple prompt could generate useful quizzes and summaries. Watching the model respond to real exam topics was exciting.
+
+**6.3 If given more time, what would you improve or add?**
+I would add a simple web UI where students can select subjects and track their scores, and possibly integrate voice input or flashcard review.
+
+**6.4 What did you learn about ChatGPT or prompt design?**
+Prompt design is like coding logic. It’s not about long instructions but precise control and modular thinking. I also learned how system messages can shape behavior.
+
+**6.5 Did you ever feel stuck? How did you handle it?**
+Yes, especially when the output didn’t match the request type. I fixed it by testing variants, asking ChatGPT what was missing, and simplifying prompts step-by-step.
+
+---
+
+### 🧠 SECTION 7: HACK VALUE (Optional)
+
+I went beyond the base brief by:
+
+* Simulating short-term memory using system messages
+* Adding markdown and emojis for a fun user experience
+* Including follow-up behavior logic to handle vague or incomplete inputs
+
+---
+
+✅ **Assignment Completed by:** YUVASRI M
